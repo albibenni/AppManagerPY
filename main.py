@@ -1,16 +1,16 @@
-# import wmi
+import wmi
 
-#
-# def print_hi(name):
-#     print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-#
-#
-# if __name__ == '__main__':
-#     print_hi('PyCharm')
+ti = 0
+name = 'vlc.exe'
+f = wmi.WMI()
 
-def checkProcesses(processName):
-    print(processName)
+for process in f.Win32_Process():
 
+    if process.name == name:
+        process.Terminate()
+        ti += 1
 
-# if __name__ == '__main__':
-#     checkProcesses("system")
+if ti == 0:
+    print("process not found")
+else:
+    print("Process found!")
